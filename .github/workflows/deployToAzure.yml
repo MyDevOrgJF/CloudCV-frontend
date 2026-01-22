@@ -20,13 +20,15 @@ jobs:
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
     - name: Upload to blob storage
-      uses: azure/CLI@v1
+      uses: azure/cli@v2
       with:
+          azcliversion: latest
           inlineScript: |
               az storage blob upload-batch --account-name cloudcvstorageacc --auth-mode key -d '$web' -s .
     - name: Purge CDN endpoint
-      uses: azure/CLI@v1
+      uses: azure/CLI@v2
       with:
+        azcliversion: latest
         inlineScript: |
            az cdn endpoint purge --content-paths  "/*" --profile-name "mycloudcvfdoor" --name "mycloudcv-a6fpcqang2fzbqe8.z03.azurefd.net" --resource-group "my_cloudCVRG"
   # Azure logout
