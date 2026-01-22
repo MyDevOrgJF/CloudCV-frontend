@@ -1,0 +1,38 @@
+name: CI with OpenID Connect
+
+on:
+    push:
+        branches: [ main ]
+
+permissions:
+      id-token: write
+      contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: azure/login@v2
+      with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+    - name: Upload to blob storage
+      uses: azure/cli@v2
+      with:
+          azcliversion: latest
+          inlineScript: |
+              az storage blob upload-batch --account-name cloudcvstorageacc --auth-mode login -d '$web' -s . --overwrite
+    - name: Purge CDN endpoint
+      uses: azure/CLI@v2
+      with:
+        azcliversion: latest
+        inlineScript: |
+           az cdn endpoint purge --content-paths  "/*" --profile-name "mycloudcvfdoor" --name "mycloudcv-a6fpcqang2fzbqe8.z03.azurefd.net" --resource-group "my_cloudCVRG"
+  # Azure logout
+    - name: logout
+      run: |
+            az logout
+      if: always()
