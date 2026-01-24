@@ -1,6 +1,7 @@
 import * as keys from "./keys.js";
 
 export const addPageViewApi = async () => {
+  
   const apiUrl = keys.addPageViewUrl;
 
   const response = await fetch(apiUrl, {

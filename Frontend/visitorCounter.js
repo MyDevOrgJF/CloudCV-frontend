@@ -6,6 +6,7 @@ window.onload = () => {
 
 const addPageView = async () => {
   try {
+
     const data = await addPageViewApi();
 
     if (!data || !data.views) {
@@ -15,6 +16,7 @@ const addPageView = async () => {
     }
 
     updateDisplay(data.views);
+    
   } catch (err) {
     console.error(err.message);
     return 0;
