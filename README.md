@@ -9,14 +9,13 @@ After achieving the Microsoft AZ-900 certification, I wanted to demonstrate my p
 
 ---
 
-The frontend is html, CSS and JS stored in Azure Blob storage, configured to run as a static website. 
-A JavaScript page visitor counter stores and retrieves data from an Azure Cosmos DB by calling a Azure Functions API .NET app.
+The frontend is HTML, CSS and JS stored in Azure Blob storage, configured to run as a static website. 
+A JavaScript page visitor counter stores and retrieves data from an Azure Cosmos DB by calling an Azure Functions API .NET app.
 
 The Functions App targets .NET 8.0 and uses the isolated process model.
 
-Azure Frontdoor was used to configure my custom domain name.
+Azure Front Door was used to configure my custom domain name. To prevent an excessive number of requests or DDoS attacks, I created a WAF policy to rate limit when a threshold is exceeded.
 
-Backend and frontend code are on separate GitHub repositories with GitHub Action workflows setup for CI/CD. Whenever I make a change and push to either repo, it automatically deploys to Azure. The backend repo runs unit tests before deploying.
-
+Backend and frontend code are on separate GitHub repositories with GitHub Action workflows set up for CI/CD. Whenever I make a change and push to either repo, it automatically deploys to Azure. The backend repo runs unit tests before deploying.
 
 👉 [***Backend repo here***](https://github.com/MyDevOrgJF/cloudCV-FunctionApp) 
