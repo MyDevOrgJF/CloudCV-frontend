@@ -5,6 +5,8 @@ After achieving the Microsoft AZ-900 certification, I wanted to demonstrate my p
 
 🔗 **Live here** [josh-fryer-az-cv.live](https://www.josh-fryer-az-cv.live)
 
+👉 [***Backend repo here***](https://github.com/MyDevOrgJF/cloudCV-FunctionApp) 
+
 ![](./images/index%20Screenshot%202026-01-24.png "Screenshot of website")
 
 ---
@@ -14,8 +16,7 @@ A JavaScript page visitor counter stores and retrieves data from an Azure Cosmos
 
 The Functions App targets .NET 8.0 and uses the isolated process model.
 
-Azure Front Door was used to configure my custom domain name. To prevent an excessive number of requests or DDoS attacks, I created a WAF policy to rate limit when a threshold is exceeded.
+Azure Front Door was used to configure my custom domain name. To prevent an excessive number of requests or DDoS attacks, I created a WAF policy to rate limit when a threshold has been exceeded.
 
 Backend and frontend code are on separate GitHub repositories with GitHub Action workflows set up for CI/CD. Whenever I make a change and push to either repo, it automatically deploys to Azure. The backend repo runs unit tests before deploying.
 
-👉 [***Backend repo here***](https://github.com/MyDevOrgJF/cloudCV-FunctionApp) 
